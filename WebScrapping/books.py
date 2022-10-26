@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 import re
 import pandas as pd
 
-site = requests.get('https://entertainment.time.com/2005/10/16/all-time-100-novels/slide/all/')
-soup = BeautifulSoup(site.content, 'html.parser')
+site = requests.get('https://entertainment.time.com/2005/10/16/all-time-100-novels/slide/all/') # Fetching Main Urls HTML
+soup = BeautifulSoup(site.content, 'html.parser') #Feeding It To Beautiful Soup
 
 #links Extraction
 completeList = soup.find( class_ = "entry-content group")
@@ -54,7 +54,7 @@ bookNames = re.sub('\s+' , ' ', bookNames)
 bookNames = re.split(',' ,bookNames)
 bookNames = [bookName.title() for bookName in bookNames] # Book Names Finalized
 
-#Using Pandas for Visualization
+#Using Pandas for Plotting Final Results
 finalTable = pd.DataFrame({
     'Book Title' : bookNames,
     'Date Published' : dates,
@@ -62,7 +62,6 @@ finalTable = pd.DataFrame({
     'URLS to the Book Review' : links
 })
 
-
+# Printing Finalized Table
 print(finalTable)
-
-
+print("By Mr-Fahad-Rajput  SP19-BSE-036")
